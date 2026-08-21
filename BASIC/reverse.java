@@ -28,6 +28,12 @@ public class reverse {
             start++;
             end--;
         }
+        //iijijis
+        // int temp=arr[start];
+        //     arr[start]=arr[end];
+        //     arr[end]=temp;
+        //     start++;
+        //     end--;
         return arr;
     }
 }
