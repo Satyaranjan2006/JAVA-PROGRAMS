@@ -8,6 +8,7 @@ public class ReverseNumber {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n;
         try {
+            
             System.out.println("Enter a number");
             n = Integer.parseInt(br.readLine());
         } catch (Exception e) {
@@ -15,6 +16,8 @@ public class ReverseNumber {
             return;
         }
         int rev,i,s;
+
+
         rev = 0;
         for(i=n; i!=0; i/=10){
             rev= rev*10+(i%10);
