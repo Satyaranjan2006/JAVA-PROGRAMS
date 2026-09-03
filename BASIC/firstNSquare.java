@@ -1,27 +1,21 @@
 package BASIC;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class firstNSquare {
     public static void main(String[] args) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n;
-        System.out.println("Enter the value of n");
-        try{
-            n = Integer.parseInt(br.readLine());
-        }catch (Exception e){
-            System.out.println("An error occurred");
-            return;
+        Scanner sc=new Scanner(System.in);
+
+        System.out.println("Enter number for finding the sum of its square root");
+
+        int n=sc.nextInt();
+
+        if(n<0){
+            System.out.println("The number you entered is not valid");
+
         }
-        if(n<=0){
-            System.out.println("n should be greater than zero");
-            return;
-        }
-        System.out.println("First " + n + " square numbers are ");
-        int i;
-        for(i=1; i<=n; i++){
-            System.out.print(i*i + " ");
-        }
+        double result=n*(n+1)*(2*n+1)/6;
+
+        System.out.println("Sum of N cube is  "+ result);
     }
 }
