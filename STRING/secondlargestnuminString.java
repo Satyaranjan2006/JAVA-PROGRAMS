@@ -29,3 +29,17 @@ class Solution {
         return secondLargest;
     }
 }
+
+//secon
+int largest=arr.get(0);
+        int secondLargest=-1;
+        for(int i=1;i<size;i++){
+            if(arr.get(i)>largest){
+                secondLargest=largest;
+                largest=arr.get(i);
+            }
+            if(arr.get(i)<largest && arr.get(i)>secondLargest){
+                secondLargest=arr.get(i);
+            }
+        }
+        return secondLargest;
