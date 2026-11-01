@@ -22,3 +22,34 @@ class Solution {
     }
     
 }
+
+
+//c++ code
+
+class Solution {
+public:
+    void SubSetsRec(vector<int>& nums, int index,
+                    vector<int>& singleSubset,
+                    vector<vector<int>>& subsets) {
+        if (index == nums.size()) {
+            subsets.push_back(singleSubset);
+            return;
+        }
+
+        // notPick
+        SubSetsRec(nums, index + 1, singleSubset, subsets);
+
+        // pick
+        singleSubset.push_back(nums[index]);
+        SubSetsRec(nums, index + 1, singleSubset, subsets);
+        singleSubset.pop_back();
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> subsets;
+        vector<int> singleSubset;
+
+        SubSetsRec(nums, 0, singleSubset, subsets);
+        return subsets;
+    }
+};
