@@ -27,6 +27,8 @@ Constraints:
 s contains only lowercase English letters.
  * Solution
  */
+//
+//  JAVA SOLUTION
 class Solution {
     public List<List<String>> partition(String s) {
         List<List<String>> result= new ArrayList<>();
@@ -105,6 +107,8 @@ public:
     }
 };
 
+
+//Word Search
 
 class Solution {
 public:
