@@ -130,3 +130,49 @@ int main() {
 
     return 0;
 }
+
+//python
+class Solution:
+    # Returns the first rows for a single-item input list.
+    def generateFromList(self, input_values: list[int]) -> list[list[int]]:
+        return self.generate(input_values[0])
+
+    # Returns one value from Pascal's Triangle.
+    def valueAt(self, row: int, col: int) -> int:
+        # Boundary values are always 1.
+        if col == 0 or col == row:
+            return 1
+
+        # Add the two values directly above the current cell.
+        return self.valueAt(row - 1, col - 1) + self.valueAt(row - 1, col)
+
+    # Returns the first numRows rows of Pascal's Triangle.
+    def generate(self, numRows: int) -> list[list[int]]:
+        triangle: list[list[int]] = []
+
+        # Build every requested row from top to bottom.
+        for row in range(numRows):
+            current: list[int] = []
+
+            # Compute every cell in this row independently.
+            for col in range(row + 1):
+                current.append(self.valueAt(row, col))
+
+            triangle.append(current)
+
+        return triangle
+
+
+# Driver code
+def main() -> None:
+    numRows: int = 6
+
+    # instance for class Solution
+    sol: Solution = Solution()
+
+    print(sol.generate(numRows))
+
+
+# Execute the driver only when this file is run directly.
+if __name__ == "__main__":
+    main()
