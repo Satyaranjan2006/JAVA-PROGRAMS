@@ -142,3 +142,46 @@ public:
         helper(board, 0, 0);
     }
 };
+
+
+//python solution
+
+class Solution:
+    def is_safe(self, board: list[list[str]], row: int, col: int, digit: str) -> bool:
+        for j in range(9):
+            if board[row][j] == digit:
+                return False
+        for j in range(9):
+            if board[j][col] == digit:
+                return False
+
+        srow = (row // 3) * 3
+        scol = (col // 3) * 3
+        for i in range(srow, srow + 3):
+            for j in range(scol, scol + 3):
+                if board[i][j] == digit:
+                    return False
+        return True
+
+    def helper(self, board: list[list[str]], row: int, col: int) -> bool:
+        if row == 9:
+            return True
+
+        next_row, next_col = row, col + 1
+        if next_col == 9:
+            next_row, next_col = row + 1, 0
+
+        if board[row][col] != '.':
+            return self.helper(board, next_row, next_col)
+
+        for digit in "123456789":
+            if self.is_safe(board, row, col, digit):
+                board[row][col] = digit
+                if self.helper(board, next_row, next_col):
+                    return True
+            board[row][col] = '.'
+
+        return False
+
+    def solveSudoku(self, board: list[list[str]]) -> None:
+        self.helper(board, 0, 0)
