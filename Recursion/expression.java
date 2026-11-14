@@ -36,3 +36,62 @@ class Solution {
         }
     }
 } 
+
+// c++ solution
+
+class Solution {
+private:
+    vector<string> ans;
+
+    void backtrack(const string& num, int target, int pos,
+                   long long value, long long last,
+                   string expr) {
+        if (pos == num.size()) {
+            if (value == target) {
+                ans.push_back(expr);
+            }
+            return;
+        }
+
+        long long current = 0;
+
+        for (int i = pos; i < num.size(); i++) {
+            // Operands cannot have leading zeros.
+            if (i > pos && num[pos] == '0') {
+                break;
+            }
+
+            current = current * 10 + (num[i] - '0');
+            string part = num.substr(pos, i - pos + 1);
+
+            if (pos == 0) {
+                // The first operand has no preceding operator.
+                backtrack(num, target, i + 1,
+                          current, current, part);
+            } else {
+                // Addition
+                backtrack(num, target, i + 1,
+                          value + current, current,
+                          expr + "+" + part);
+
+                // Subtraction
+                backtrack(num, target, i + 1,
+                          value - current, -current,
+                          expr + "-" + part);
+
+                // Multiplication: preserve operator precedence.
+                backtrack(num, target, i + 1,
+                          value - last + last * current,
+                          last * current,
+                          expr + "*" + part);
+            }
+        }
+    }
+
+public:
+    vector<string> addOperators(string num, int target) {
+        ans.clear();
+        backtrack(num, target, 0, 0, 0, "");
+        return ans;
+    }
+};
