@@ -50,3 +50,33 @@ class Solution {
         
     }
 }
+
+//c++ solution
+
+
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) 
+    {
+        map<int, int> rem;
+        rem[0] = -1;
+
+        int sum = 0, n = nums.size();
+
+        for(int i = 0; i < n; i++)
+        {
+            sum += nums[i];
+            int x = sum % k;
+
+            if(rem.find(x) != rem.end())
+            {
+                if(i - rem[x] >= 2)
+                    return true;
+            }
+            else
+                rem[x] = i;
+        }
+
+        return false;
+    }
+};
